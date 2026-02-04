@@ -1,0 +1,48 @@
+Target Service / Process
+Service: sshd
+PID: 742
+To connect Remote SSH access to aws server
+
+1.Environment Basics:-
+(a)cmd- uname -a(Confirms running Ubuntu kernel).
+(b)cmd- cat/etc/od-release(Ubuntu 22.04.3 LTS. Supported LTS version — no immediate OS concern).
+
+2.Filesystem Sanity Check-(File copied successfully. No permission or filesystem errors.)
+(a)create a throwaway folder and file.
+e.g., mkdir /tmp/runbook-demo, 
+cp /etc/hosts /tmp/runbook-demo/hosts-copy 
+ls -l /tmp/runbook-demo
+
+3.CPU & Memory Snapshot:-
+cmd- ps -o pid,pcpu,pmem,comm -p 742
+
+4.Disk & I/O Snapshot
+cmd: df -h
+Root partition at 62% usage. Healthy, no disk pressure.
+
+cmd: du -ssh/var/log
+/var/log using 420M. Logs not consuming abnormal space.
+
+
+5. Network snapshot
+(a)cmd: ss -tulpn | grep ssh 
+O/P: sshd listening on 0.0.0.0:22 and :::22
+ Service actively listening on expected port.
+
+(b)cmd: curl -I http://localhost
+O/P: HTTP 200 response. Network stack functioning correctly.
+
+6.Logs Reviewed
+(a) journalctl -u ssh -n 50
+o/p:Recent successful login entries. No authentication failures or service crashes.
+
+(b) tail -n 50 /var/log/auth.log
+o/p: Normal login/logout activity. No brute-force patterns observed.
+
+
+
+
+
+
+
+
