@@ -55,3 +55,53 @@ Check your files: ls -l day10file.txt notes.txt script.sh
 <img width="824" height="100" alt="image" src="https://github.com/user-attachments/assets/19c4774a-950b-43a7-b7e9-a081372e05d2" />
 
 Answer: What are current permissions? Who can read/write/execute?
+Permission Analysis:
+
+devops.txt: -rw-r--r-- (owner can read/write, group can read, others can read)
+notes.txt: -rw-r--r-- (owner can read/write, group can read, others can read)
+script.sh: -rw-r--r-- (owner can read/write, group can read, others can read)
+
+Task 4: Modify Permissions 
+(a)Make script.sh executable → run it with ./script.sh
+=> chmod +x script.sh
+
+check with: 
+ls -l script.sh
+
+Run it:
+./script.sh
+
+(b)Set devops.txt to read-only (remove write for all).
+=> chmod a-w devops.txt
+
+(c) Set notes.txt to 640 (owner: rw, group: r, others: none)
+chmod 640 notes.txt
+
+(d)Create directory project/ with permissions 755
+mkdir project
+chmod 755 project
+Meaning:
+
+Owner → Full access
+Group → Read + Execute
+Others → Read + Execute
+
+Task 5: Test Permissions
+(a)Trying writing to read-only file
+echo "test" >> devops.txt
+
+O/P: Permission denied
+
+Ready-to-use markdown file;
+cmd: vim day-10-file-permissions.md
+ insert(i) : inside text editor-
+ ## What I Learned
+1. Linux permissions use rwx model.
+2. Numeric permissions use 4-2-1 rule.
+3. Execute permission is required to run scripts.
+4. Directories need execute permission to enter them.
+
+esc
+:wq
+
+
