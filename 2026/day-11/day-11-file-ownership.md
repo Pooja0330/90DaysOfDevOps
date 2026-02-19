@@ -38,3 +38,73 @@ sudo useradd berlin
 
 (d)Change Owner to tokyo
 sudo chown tokyo devops_file.txt
+
+ls -l devops_fie.txt
+
+(e) change owner to berlin
+sudo chown berlin devops_files.txt
+
+Task 3: Basic chgrp Operations:-
+(a)file creation: touch team-notes.txt
+check: ls -l team-notes.txt
+
+(b)Create Group
+sudo groupadd heist-team
+
+(c)Change Group
+sudo chgrp heist-team team-notes.txt
+ls -l team-notes.txt
+
+Task 4: Change Owner & Group Together
+(a)Create File: touch project-config.yaml
+(b)Create User: sudo useradd professor
+(c) change group and owner in single cmd:-
+sudo chown: professor:heist-team project-config.yaml
+(d) create directory
+cmd: mkdir app-logs
+change owner:
+sudo chown berlin:heist-team app-logs
+ls -l
+
+Task 5: Recursive Ownership
+(a)Create Structure
+mkdir -p heist-project/vault
+mkdir -p heist-project/plans
+touch heist-project/vault/gold.txt
+touch heist-project/plans/strategy.conf
+
+(b)Create Group
+sudo groupadd planners
+
+(c)Recursive Change
+sudo chown -R professor:planners heist-project/
+
+(D)Verify Recursively
+ls -lR heist-project/
+
+Task 6: Practice Challenge
+create users
+sudo useradd tokyo
+sudo useradd berlin
+sudo useradd nairobi
+
+create groups
+sudo groupadd vault-team
+sudo groupadd tech-team
+
+create directories and files:
+mkdir bank-heist
+touch bank-heist/access-codes.txt
+touch bank-heist/blueprints.pdf
+touch bank-heist/escape-plan.txt
+
+Set Ownership:
+sudo chown tokyo:vault-team bank-heist/access-codes.txt
+sudo chown berlin:tech-team bank-heist/blueprints.pdf
+sudo chown nairobi:vault-team bank-heist/escape-plan.txt
+
+ls -l bank-heist/
+
+
+
+
